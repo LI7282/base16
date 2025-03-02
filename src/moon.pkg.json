@@ -1,0 +1,13 @@
+{
+  "name":"base16",
+  "version": "0.1.0",
+  "readme": "README.md",
+  "repository": "",
+  "license": "Apache-2.0",
+  "keywords":["base16"],
+  "description":"Implemented Base16 (hexadecimal) encoding and decoding functionality",
+  "source":"src",
+  "import": [
+    "LI7282/base16/lib"
+  ]
+}
