@@ -1,8 +1,8 @@
 {
-  "name":"base16",
+  "name":"LI7282/base16",
   "version": "0.1.0",
   "readme": "README.md",
-  "repository": "",
+  "repository": "https://github.com/LI7282/base16.git",
   "license": "Apache-2.0",
   "keywords":["base16"],
   "description":"Implemented Base16 (hexadecimal) encoding and decoding functionality",
