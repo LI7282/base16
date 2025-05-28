@@ -20,9 +20,9 @@ pub fn decoderFromHex(hex:String) -> Array[Byte]{
   let data:Array[Byte] = Array::make(len/2, 0)
   for i = 0; i< len; i = i + 2{
     // 手动转换第一个十六进制字符为整数值
-    let highNibble = convertHexCharToInt(Char::from_int(hex.charcode_at(i)));
+    let highNibble = convertHexCharToInt(Int::unsafe_to_char(hex.charcode_at(i)));
     // 手动转换第二个十六进制字符为整数值
-    let lowNibble = convertHexCharToInt(Char::from_int(hex.charcode_at(i+1)));
+    let lowNibble = convertHexCharToInt(Int::unsafe_to_char(hex.charcode_at(i+1)));
     data[i / 2] = ((highNibble << 4) + lowNibble).to_byte()
   }
   return data
@@ -30,16 +30,17 @@ pub fn decoderFromHex(hex:String) -> Array[Byte]{
 
 
 fn convertHexCharToInt(c:Char) -> Int {
-  if (c >= '0' && c <= '9') {
-    // 字符 '0' - '9' 对应的整数值为 0 - 9
-    return c - '0';
-  } else if (c >= 'A' && c <= 'F') {
-    // 字符 'A' - 'F' 对应的整数值为 10 - 15
-    return c - 'A' + 10;
-  } else if (c >= 'a' && c <= 'f') {
-    // 字符 'a' - 'f' 对应的整数值为 10 - 15
-    return c - 'a' + 10;
-  } else {
-    return -1
-  }
+    let code = Char::to_int(c);
+    if (c >= '0' && c <= '9') {
+        // 字符 '0' - '9' 对应的整数值为 0 - 9
+        return code - Char::to_int('0');
+    } else if (c >= 'A' && c <= 'F') {
+        // 字符 'A' - 'F' 对应的整数值为 10 - 15
+        return code - Char::to_int('A') + 10;
+    } else if (c >= 'a' && c <= 'f') {
+        // 字符 'a' - 'f' 对应的整数值为 10 - 15
+        return code - Char::to_int('a') + 10;
+    } else {
+        return -1;
+    }
 }
